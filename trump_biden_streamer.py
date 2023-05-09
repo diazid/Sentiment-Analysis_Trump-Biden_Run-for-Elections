@@ -2,6 +2,7 @@ import os
 import json
 from datetime import datetime
 import requests
+import time
 
 ## setting bearer token
 bearer_token = os.environ.get("BEARER_TOKEN")
@@ -100,4 +101,9 @@ def main():
     get_stream(set, file_name=filename)
 
 if __name__ == "__main__":
-    main()
+    while True:
+        try:
+            main()
+        except Exception as e:
+            print(e)
+            time.sleep(5*60)
